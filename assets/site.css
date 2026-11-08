@@ -21,17 +21,19 @@ a:hover { text-decoration: underline; }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; }
 p, ul, dl { margin: 0; }
 .page { max-width: 1160px; margin: 0 auto; padding: 64px 48px 28px; }
-.masthead { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; padding-bottom: 40px; border-bottom: 2px solid var(--ink); }
+.masthead { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px 32px; padding-bottom: 40px; border-bottom: 2px solid var(--ink); }
+.identity { grid-column: 1; grid-row: 1; }
 h1 { margin: 0; font-size: clamp(1.85rem, 3.2vw, 2.65rem); line-height: 1.35; letter-spacing: -.045em; font-weight: 650; }
 .role { font-size: 1.1rem; margin-top: 8px; color: var(--muted); }
-.contacts { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 20px; font-size: .91rem; }
-.contacts a { text-decoration: none; }
+.contacts { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 16px; font-size: .91rem; }
+.contacts a { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; text-decoration: none; }
+.contacts svg { width: 18px; height: 18px; flex: none; }
 .contacts a:hover { text-decoration: underline; }
-.utilities { display: flex; flex-direction: column; align-items: flex-end; gap: 22px; flex-shrink: 0; padding-top: 4px; font-size: .85rem; }
-.language-switch { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 6px; }
-.language-switch a { padding: 2px 11px; border-radius: 3px; text-decoration: none; }
-.language-switch a[aria-current] { color: var(--paper); background: var(--accent); }
-.pdf-link { white-space: nowrap; text-decoration: none; }
+.language-switch { grid-column: 2; grid-row: 1; justify-self: end; display: flex; align-items: center; gap: 6px; font-size: .85rem; white-space: nowrap; }
+.language-switch a { display: inline-flex; align-items: center; justify-content: center; min-width: 32px; min-height: 40px; padding: 2px 5px; color: var(--muted); text-decoration: none; }
+.language-switch a[aria-current] { color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: .4em; }
+.language-switch a:hover { color: var(--accent); text-decoration: underline; }
+.language-divider { color: var(--line); }
 .layout { display: grid; grid-template-columns: 166px minmax(0, 1fr); column-gap: 42px; padding-top: 42px; }
 .sidebar nav { position: sticky; top: 30px; display: flex; flex-direction: column; align-items: flex-start; gap: 17px; font-size: .85rem; line-height: 1.5; }
 .sidebar a { color: var(--muted); text-decoration: none; max-width: 145px; }
@@ -40,7 +42,7 @@ main { min-width: 0; }
 .resume-section + .resume-section { margin-top: 44px; padding-top: 31px; border-top: 1px solid var(--line); }
 h2 { margin: 0 0 20px; font-size: .86rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
 #profile p { font-size: 1.04rem; line-height: 1.95; }
-.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; }
+.skills-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 .skills-grid dt { font-size: .93rem; font-weight: 650; line-height: 1.5; margin-bottom: 5px; }
 .skills-grid dd { margin: 0; font-size: .9rem; line-height: 1.85; color: var(--muted); }
 .job-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 14px; }
@@ -74,11 +76,13 @@ footer a { text-decoration: none; }
 
 @media (max-width: 560px) {
   .page { padding: 24px 22px; }
-  .masthead { flex-direction: column; gap: 24px; padding-bottom: 26px; }
+  .masthead { grid-template-columns: 1fr; gap: 14px; padding-bottom: 26px; }
+  .language-switch { grid-column: 1; grid-row: 1; }
+  .identity { grid-row: 2; }
   h1 { font-size: 1.9rem; }
   .role { font-size: 1rem; }
-  .contacts { gap: 3px 17px; margin-top: 14px; overflow-wrap: anywhere; }
-  .utilities { width: 100%; flex-direction: row; align-items: center; justify-content: space-between; padding: 0; }
+  .contacts { gap: 3px 20px; margin-top: 12px; }
+  .contacts a[href^="mailto:"] { flex-basis: 100%; }
   .sidebar { margin-bottom: 28px; }
   .sidebar nav { font-size: .78rem; gap: 12px 18px; }
   .skills-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -97,7 +101,7 @@ footer a { text-decoration: none; }
 @media print {
   :root { background: white; color: black; }
   .page { max-width: none; padding: 0; }
-  .utilities, .sidebar, .skip-link, footer { display: none; }
+  .language-switch, .sidebar, .skip-link, footer { display: none; }
   .layout { display: block; padding-top: 24px; }
   .masthead { padding-bottom: 20px; }
   body { font-size: 10pt; }

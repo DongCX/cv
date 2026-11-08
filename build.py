@@ -12,11 +12,10 @@ BASE_URL = "https://dongcx.github.io/cv/"
 LANGUAGES = {
     "zh": {
         "source": "08-frontend-resume-zh-v2.md",
-        "lang": "zh-Hant",
+        "lang": "zh-TW",
         "sections": ["簡介", "技術與能力", "工作經歷", "學歷"],
         "skip": "跳至主要內容",
         "navigation": "段落導覽",
-        "download": "下載中文 PDF",
         "top": "回到頁首",
     },
     "en": {
@@ -25,11 +24,30 @@ LANGUAGES = {
         "sections": ["Profile", "Technical Skills and Collaboration", "Experience", "Education"],
         "skip": "Skip to content",
         "navigation": "On this page",
-        "download": "Download English PDF",
         "top": "Back to top",
     },
 }
 SECTION_IDS = ["profile", "skills", "experience", "education"]
+CONTACT_ICONS = {
+    "Email": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    "GitHub": '<path fill="currentColor" stroke="none" d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.64 1.22 3.29.93.1-.73.39-1.22.72-1.5-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.64 0c2.15-1.46 3.1-1.15 3.1-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.4.35.76 1.04.76 2.1v3.08c0 .3.2.65.77.54A11.25 11.25 0 0 0 12 .75Z"/>',
+    "LinkedIn": '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="7.5" cy="8" r="1" fill="currentColor" stroke="none"/><path d="M7.5 11v6.5M11.5 11v6.5M11.5 14a3 3 0 0 1 6 0v3.5"/>',
+}
+
+
+def render_contacts(contacts):
+    links = []
+    for label, url in contacts:
+        if url.startswith("mailto:"):
+            icon_name = "Email"
+        elif url == "https://github.com/DongCX":
+            label = icon_name = "GitHub"
+        else:
+            icon_name = label
+        icon = CONTACT_ICONS[icon_name]
+        svg = f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{icon}</svg>'
+        links.append(f'<a href="{html.escape(url, quote=True)}">{svg}<span>{html.escape(label)}</span></a>')
+    return "".join(links)
 
 
 def inline(text):
@@ -126,10 +144,8 @@ def build_page(language):
     name, role, contacts, sections = parse_resume(text, language)
     prefix = "../" if language == "en" else "./"
     current_url = BASE_URL + ("en/" if language == "en" else "")
-    pdf_name = f"chung-hsuan-tung-frontend-resume-{language}.pdf"
     description = sections[0]["lines"][0]
-    contact_labels = {"https://github.com/DongCX": "github"}
-    contact_links = "".join(f'<a href="{html.escape(url, quote=True)}">{html.escape(contact_labels.get(url, label))}</a>' for label, url in contacts)
+    contact_links = render_contacts(contacts)
     navigation = "".join(f'<a href="#{anchor}">{html.escape(section["title"])}</a>' for anchor, section in zip(SECTION_IDS, sections))
     body = []
     for anchor, section in zip(SECTION_IDS, sections):
@@ -140,9 +156,9 @@ def build_page(language):
         else:
             content = "\n".join(f"<p>{inline(line)}</p>" for line in section["lines"])
         body.append(f'<section id="{anchor}" class="resume-section" aria-labelledby="{anchor}-title"><h2 id="{anchor}-title">{html.escape(section["title"])}</h2>{content}</section>')
-    language_links = "".join(
+    language_links = '<span aria-hidden="true" class="language-divider">/</span>'.join(
         f'<a href="{prefix}{"en/" if lang == "en" else ""}" lang="{LANGUAGES[lang]["lang"]}" hreflang="{LANGUAGES[lang]["lang"]}"{ " aria-current=\"page\"" if lang == language else ""}>{label}</a>'
-        for lang, label in [("zh", "中文"), ("en", "English")]
+        for lang, label in [("zh", "zh-tw"), ("en", "en")]
     )
     return f'''<!doctype html>
 <html lang="{settings["lang"]}">
@@ -157,7 +173,7 @@ def build_page(language):
   <meta property="og:description" content="{html.escape(description, quote=True)}">
   <meta property="og:url" content="{current_url}">
   <link rel="canonical" href="{current_url}">
-  <link rel="alternate" hreflang="zh-Hant" href="{BASE_URL}">
+  <link rel="alternate" hreflang="zh-TW" href="{BASE_URL}">
   <link rel="alternate" hreflang="en" href="{BASE_URL}en/">
   <link rel="alternate" hreflang="x-default" href="{BASE_URL}">
   <link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
@@ -167,8 +183,8 @@ def build_page(language):
   <a class="skip-link" href="#main">{settings["skip"]}</a>
   <div class="page">
     <header class="masthead">
+      <nav class="language-switch" aria-label="Language">{language_links}</nav>
       <div class="identity"><h1>{html.escape(name)}</h1><p class="role">{html.escape(role)}</p><div class="contacts">{contact_links}</div></div>
-      <div class="utilities"><nav class="language-switch" aria-label="Language">{language_links}</nav><a class="pdf-link" href="{prefix}assets/{pdf_name}" download>{settings["download"]}<span aria-hidden="true"> ↗</span></a></div>
     </header>
     <div class="layout">
       <aside class="sidebar"><nav aria-label="{settings["navigation"]}">{navigation}</nav></aside>
@@ -183,22 +199,19 @@ def build_page(language):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--inventory", type=Path, help="Import the two approved resumes and PDFs from a local inventory")
+    parser.add_argument("--inventory", type=Path, help="Import the two approved resumes from a local inventory")
     args = parser.parse_args()
     if args.inventory:
         (ROOT / "content").mkdir(exist_ok=True)
-        (ROOT / "assets").mkdir(exist_ok=True)
         for language, settings in LANGUAGES.items():
             shutil.copy2(args.inventory / settings["source"], ROOT / "content" / f"resume-{language}.md")
-            name = f"chung-hsuan-tung-frontend-resume-{language}.pdf"
-            shutil.copy2(args.inventory / "output" / name, ROOT / "assets" / name)
     docs = ROOT / "docs"
     (docs / "en").mkdir(parents=True, exist_ok=True)
     shutil.copytree(ROOT / "assets", docs / "assets", dirs_exist_ok=True)
     for language, destination in [("zh", docs / "index.html"), ("en", docs / "en" / "index.html")]:
         destination.write_text(build_page(language), encoding="utf-8")
     (docs / ".nojekyll").touch()
-    print("Built Chinese and English CV pages with matching PDF downloads.")
+    print("Built Chinese and English CV pages.")
 
 
 if __name__ == "__main__":

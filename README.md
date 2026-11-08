@@ -7,7 +7,7 @@ A bilingual CV, published with GitHub Pages.
 
 ## Editing
 
-The approved public text lives in `content/resume-zh.md` and `content/resume-en.md`. PDF downloads live in `assets/`. Keep both languages and PDF downloads in sync when editing the content.
+The approved public text lives in `content/resume-zh.md` and `content/resume-en.md`. Keep both languages in sync when editing the content. The website does not offer PDF downloads; separate PDF copies remain in the local resume inventory.
 
 Build with Python 3.12+ (standard library only):
 
@@ -15,13 +15,13 @@ Build with Python 3.12+ (standard library only):
 python3 build.py
 ```
 
-To import the two public resume drafts and matching PDFs from the local resume inventory:
+To import the two public resume drafts from the local resume inventory:
 
 ```sh
 python3 build.py --inventory ../resume-inventory
 ```
 
-Only the two named resume files and their matching PDFs are imported. Research notes, source repositories, and internal evidence are not included.
+Only the two named resume files are imported. Research notes, source repositories, PDFs, and internal evidence are not included.
 
 Preview the generated site:
 
