@@ -3,6 +3,7 @@
 
 import argparse
 import html
+import hashlib
 import re
 import shutil
 from pathlib import Path
@@ -171,6 +172,7 @@ def build_page(language):
         local_name, latin_name = name.split(" ", 1)
         name_html = f'<span class="name-local">{html.escape(local_name)}</span> <span class="name-latin" lang="en">{html.escape(latin_name)}</span>'
     prefix = "../" if language == "en" else "./"
+    css_version = hashlib.sha256((ROOT / "assets" / "site.css").read_bytes()).hexdigest()[:12]
     current_url = BASE_URL + ("en/" if language == "en" else "")
     description = sections[0]["lines"][0]
     contact_links = render_contacts(contacts)
@@ -206,7 +208,7 @@ def build_page(language):
   <link rel="alternate" hreflang="en" href="{BASE_URL}en/">
   <link rel="alternate" hreflang="x-default" href="{BASE_URL}">
   <link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="{prefix}assets/site.css">
+  <link rel="stylesheet" href="{prefix}assets/site.css?v={css_version}">
 </head>
 <body id="top">
   <a class="skip-link" href="#main">{settings["skip"]}</a>
