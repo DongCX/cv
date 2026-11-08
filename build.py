@@ -166,6 +166,10 @@ def build_page(language):
     settings = LANGUAGES[language]
     text = (ROOT / "content" / f"resume-{language}.md").read_text()
     name, role, contacts, sections = parse_resume(text, language)
+    name_html = html.escape(name)
+    if language == "zh":
+        local_name, latin_name = name.split(" ", 1)
+        name_html = f'<span class="name-local">{html.escape(local_name)}</span> <span class="name-latin" lang="en">{html.escape(latin_name)}</span>'
     prefix = "../" if language == "en" else "./"
     current_url = BASE_URL + ("en/" if language == "en" else "")
     description = sections[0]["lines"][0]
@@ -209,7 +213,7 @@ def build_page(language):
   <div class="page">
     <header class="masthead">
       <nav class="language-switch" aria-label="{settings['language_navigation']}">{language_links}</nav>
-      <div class="identity"><h1 id="resume-name">{html.escape(name)}</h1><p class="role">{html.escape(role)}</p><address class="contacts" aria-labelledby="resume-name">{contact_links}</address></div>
+      <div class="identity"><h1 id="resume-name">{name_html}</h1><p class="role">{html.escape(role)}</p><address class="contacts" aria-labelledby="resume-name">{contact_links}</address></div>
     </header>
     <div class="layout">
       <div class="sidebar"><nav aria-label="{settings["navigation"]}"><ul>{navigation}</ul></nav></div>
