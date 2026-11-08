@@ -38,7 +38,7 @@ Email [tionghian.tang@gmail.com](mailto:tionghian.tang@gmail.com)｜GitHub [Dong
 - 使用 Chrome Performance 定位初始化長任務，導入 AWD 依裝置擇一掛載，並與後端及基礎設施工程師協作調整 CloudFront／Edge Cache 裝置分流，處理 SSR／hydration 一致性
 - 核心頁面行動版 PageSpeed 測試顯示，平均總阻塞時間（TBT）最高下降約 53%
 
-#### 即時影音與連線管理｜2025–2026
+#### 直播模組建置與系統整合｜2025–2026
 
 在既有視訊產品上新增直播業務，支援直播授課與觀眾互動。
 
@@ -61,7 +61,7 @@ Email [tionghian.tang@gmail.com](mailto:tionghian.tang@gmail.com)｜GitHub [Dong
 - 主責核心功能頁面的 Nuxt 3 遷移、驗證與部署，依 New Relic 錯誤訊號及業務風險分批完成上線，並支援協作者排除跨版本整合問題
 - 協作更新執行環境與相依套件，啟用既有 CI 檢查以同步新舊版本改動
 
-#### SEO 與結構化資料｜2019、2025
+#### SEO 與結構化資料整合｜2019、2025
 
 協助搜尋引擎理解頁面內容，並統一管理多頁面共用的搜尋資訊。
 

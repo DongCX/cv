@@ -38,7 +38,7 @@ Core pages faced initialization bottlenecks and repeated data loading that delay
 - Used Chrome Performance to locate long initialization tasks. Introduced device-specific rendering (AWD) and worked with backend and infrastructure engineers to adjust CloudFront/Edge Cache device handling for SSR/hydration consistency.
 - Mobile PageSpeed tests of core pages showed up to approximately 53% lower average total blocking time (TBT).
 
-#### Real-time video and connection management | 2025–2026
+#### Livestreaming module development and system integration | 2025–2026
 
 A new livestreaming offering within the existing video product, supporting classes and audience interaction.
 
@@ -61,7 +61,7 @@ A framework upgrade involving parallel services, data initialization, feature sy
 - Owned Nuxt 3 migration, validation, and deployment for core feature pages. Completed staged rollouts based on New Relic error signals and business risk, and supported contributors in resolving cross-version integration issues.
 - Enabled existing CI synchronization checks for parallel development across versions and collaborated on runtime and dependency updates.
 
-#### SEO and structured data | 2019, 2025
+#### SEO and structured data integration | 2019, 2025
 
 Shared search metadata and structured data to help search engines interpret page content.
 
