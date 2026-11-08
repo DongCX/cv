@@ -128,7 +128,8 @@ def build_page(language):
     current_url = BASE_URL + ("en/" if language == "en" else "")
     pdf_name = f"chung-hsuan-tung-frontend-resume-{language}.pdf"
     description = sections[0]["lines"][0]
-    contact_links = "".join(f'<a href="{html.escape(url, quote=True)}">{html.escape(label)}</a>' for label, url in contacts)
+    contact_labels = {"https://github.com/DongCX": "github"}
+    contact_links = "".join(f'<a href="{html.escape(url, quote=True)}">{html.escape(contact_labels.get(url, label))}</a>' for label, url in contacts)
     navigation = "".join(f'<a href="#{anchor}">{html.escape(section["title"])}</a>' for anchor, section in zip(SECTION_IDS, sections))
     body = []
     for anchor, section in zip(SECTION_IDS, sections):
