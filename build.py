@@ -16,14 +16,17 @@ LANGUAGES = {
         "sections": ["簡介", "技術與能力", "工作經歷", "學歷"],
         "skip": "跳至主要內容",
         "navigation": "段落導覽",
+        "language_navigation": "語言切換",
         "top": "回到頁首",
     },
     "en": {
         "source": "30-frontend-resume-en-v2.md",
         "lang": "en",
         "sections": ["Profile", "Technical Skills and Collaboration", "Experience", "Education"],
+        "navigation_labels": ["Profile", "Skills", "Experience", "Education"],
         "skip": "Skip to content",
         "navigation": "On this page",
+        "language_navigation": "Language",
         "top": "Back to top",
     },
 }
@@ -58,6 +61,24 @@ def inline(text):
 def split_title(text):
     parts = re.split(r"\s*[｜|]\s*", text, maxsplit=1)
     return parts[0], parts[1] if len(parts) > 1 else ""
+
+
+def render_dates(text):
+    """Preserve displayed dates while exposing only their known precision."""
+    months = {name: f"{index:02}" for index, name in enumerate(
+        "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(), 1)}
+    pattern = r"\b(?:" + "|".join(months) + r") \d{4}\b|\b\d{4}\.\d{2}\b|\b\d{4}\b"
+
+    def time_tag(match):
+        label = match.group()
+        if " " in label:
+            month, year = label.split()
+            value = f"{year}-{months[month]}"
+        else:
+            value = label.replace(".", "-")
+        return f'<time datetime="{value}">{label}</time>'
+
+    return re.sub(pattern, time_tag, html.escape(text))
 
 
 def parse_resume(text, language):
@@ -96,6 +117,7 @@ def render_experience(lines):
     output = []
     job_open = project_open = list_open = False
     project_index = 0
+    job_index = 0
     for line in lines:
         if not line.startswith("- ") and list_open:
             output.append("</ul>")
@@ -107,15 +129,16 @@ def render_experience(lines):
             if job_open:
                 output.append("</article>")
             name, detail = split_title(line[4:])
-            output.append(f'<article class="job"><header class="job-header"><h3>{html.escape(name)}</h3><p>{html.escape(detail)}</p></header>')
+            job_index += 1
+            output.append(f'<article class="job" aria-labelledby="job-{job_index}"><header class="job-header"><h3 id="job-{job_index}">{html.escape(name)}</h3><p>{render_dates(detail)}</p></header>')
             job_open = True
         elif line.startswith("#### "):
             if project_open:
                 output.append("</section>")
             project_index += 1
             title, date = split_title(line[5:])
-            date_span = f'<span class="project-date">{html.escape(date)}</span>' if date else ""
-            output.append(f'<section class="project" aria-labelledby="project-{project_index}"><h4 id="project-{project_index}">{html.escape(title)}{date_span}</h4>')
+            date_span = f'<p class="project-date">{render_dates(date)}</p>' if date else ""
+            output.append(f'<section class="project" aria-labelledby="project-{project_index}"><header class="project-heading"><h4 id="project-{project_index}">{html.escape(title)}</h4>{date_span}</header>')
             project_open = True
         elif line.startswith("- "):
             if not list_open:
@@ -124,7 +147,8 @@ def render_experience(lines):
             output.append(f"<li>{inline(line[2:])}</li>")
         elif not line.startswith("#"):
             kind = "project-purpose" if project_open else "job-dates"
-            output.append(f'<p class="{kind}">{inline(line)}</p>')
+            content = inline(line) if project_open else render_dates(line)
+            output.append(f'<p class="{kind}">{content}</p>')
         else:
             raise ValueError(f"Unexpected experience line: {line}")
     if list_open:
@@ -146,7 +170,8 @@ def build_page(language):
     current_url = BASE_URL + ("en/" if language == "en" else "")
     description = sections[0]["lines"][0]
     contact_links = render_contacts(contacts)
-    navigation = "".join(f'<a href="#{anchor}">{html.escape(section["title"])}</a>' for anchor, section in zip(SECTION_IDS, sections))
+    navigation_labels = settings.get("navigation_labels", settings["sections"])
+    navigation = "".join(f'<li><a href="#{anchor}">{html.escape(label)}</a></li>' for anchor, label in zip(SECTION_IDS, navigation_labels))
     body = []
     for anchor, section in zip(SECTION_IDS, sections):
         if anchor == "skills":
@@ -154,7 +179,7 @@ def build_page(language):
         elif anchor == "experience":
             content = render_experience(section["lines"])
         else:
-            content = "\n".join(f"<p>{inline(line)}</p>" for line in section["lines"])
+            content = "\n".join(f"<p>{render_dates(line) if anchor == 'education' else inline(line)}</p>" for line in section["lines"])
         body.append(f'<section id="{anchor}" class="resume-section" aria-labelledby="{anchor}-title"><h2 id="{anchor}-title">{html.escape(section["title"])}</h2>{content}</section>')
     language_links = '<span aria-hidden="true" class="language-divider">/</span>'.join(
         f'<a href="{prefix}{"en/" if lang == "en" else ""}" lang="{LANGUAGES[lang]["lang"]}" hreflang="{LANGUAGES[lang]["lang"]}"{ " aria-current=\"page\"" if lang == language else ""}>{label}</a>'
@@ -183,12 +208,12 @@ def build_page(language):
   <a class="skip-link" href="#main">{settings["skip"]}</a>
   <div class="page">
     <header class="masthead">
-      <nav class="language-switch" aria-label="Language">{language_links}</nav>
-      <div class="identity"><h1>{html.escape(name)}</h1><p class="role">{html.escape(role)}</p><div class="contacts">{contact_links}</div></div>
+      <nav class="language-switch" aria-label="{settings['language_navigation']}">{language_links}</nav>
+      <div class="identity"><h1 id="resume-name">{html.escape(name)}</h1><p class="role">{html.escape(role)}</p><address class="contacts" aria-labelledby="resume-name">{contact_links}</address></div>
     </header>
     <div class="layout">
-      <aside class="sidebar"><nav aria-label="{settings["navigation"]}">{navigation}</nav></aside>
-      <main id="main">{"".join(body)}</main>
+      <div class="sidebar"><nav aria-label="{settings["navigation"]}"><ul>{navigation}</ul></nav></div>
+      <main id="main" tabindex="-1">{"".join(body)}</main>
     </div>
     <footer><span>{html.escape(name)}</span><a href="#top">{settings["top"]}<span aria-hidden="true"> ↑</span></a></footer>
   </div>
