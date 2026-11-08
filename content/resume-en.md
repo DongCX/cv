@@ -76,6 +76,10 @@ Early product development and tools for recurring data maintenance and finance w
 
 ### Fontech | Frontend Engineer (Full-time) | Feb 2020–Aug 2020
 
+### New Power Party | Media and Creative Department | Aug 2015–Aug 2016
+
+### 觸動創意股份有限公司 | Frontend Designer | Dec 2014–Aug 2015
+
 ## Education
 
 Yuan Ze University | Bachelor's degree | 2012

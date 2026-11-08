@@ -76,6 +76,10 @@ Email [tionghian.tang@gmail.com](mailto:tionghian.tang@gmail.com)｜GitHub [Dong
 
 ### Fontech｜前端工程師（全職）｜2020.02–2020.08
 
+### New Power Party｜媒體創意部｜2015.08–2016.08
+
+### 觸動創意股份有限公司｜前端設計師｜2014.12–2015.08
+
 ## 學歷
 
 元智大學｜管理學院 財務金融學程｜學士｜2012 年畢業
