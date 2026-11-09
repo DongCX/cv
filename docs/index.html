@@ -27,7 +27,7 @@
     <div class="layout">
       <div class="sidebar"><nav aria-label="段落導覽"><ul><li><a href="#profile">簡介</a></li><li><a href="#skills">技術與能力</a></li><li><a href="#experience">工作經歷</a></li><li><a href="#education">學歷</a></li></ul></nav></div>
       <main id="main" tabindex="-1"><section id="profile" class="resume-section" aria-labelledby="profile-title"><h2 id="profile-title">簡介</h2><p>具備 8 年以上前端工程經驗，熟悉現代前端框架的元件設計、資料流與 SSR 開發，實務經驗涵蓋 React／TypeScript 與 Vue／Nuxt。曾開發搜尋、預約、購物車及即時互動功能，並負責效能優化、SEO、系統遷移與分階段交付，透過設計與程式碼審查協助團隊成員。</p></section><section id="skills" class="resume-section" aria-labelledby="skills-title"><h2 id="skills-title">技術與能力</h2><dl class="skills-grid"><div><dt>語言、框架與樣式</dt><dd>JavaScript、TypeScript、HTML／CSS、React、Vue、Nuxt 2／3、Tailwind CSS、UnoCSS、CSS Modules</dd></div>
-<div><dt>前端架構與整合</dt><dd>模組與資料流設計、富文字編輯器設計與整合（Tiptap）、REST API／GraphQL／WebSocket 串接、WebRTC 與影音 SDK 整合</dd></div>
+<div><dt>前端架構與整合</dt><dd>模組與資料流設計、富文字編輯器設計與整合（Tiptap）、REST API／GraphQL／WebSocket 串接、WebRTC 與影音 SDK 整合、行為埋點與轉化追蹤（GA4／ByteDance）</dd></div>
 <div><dt>測試與自動化</dt><dd>單元與元件測試（Jest、Vitest、React Testing Library）、流程自動化（Playwright）</dd></div>
 <div><dt>渲染、效能與 SEO</dt><dd>SSR 策略、hydration 優化、RWD/AWD 開發、Chrome Performance、PageSpeed、裝置快取整合（CloudFront／Edge Cache）、SEO 與網頁結構優化</dd></div>
 <div><dt>協作</dt><dd>Mentorship、設計與程式碼審查、任務拆解與知識交接</dd></div>
@@ -73,13 +73,22 @@
 <li>協作更新執行環境與相依套件，啟用既有 CI 檢查以同步新舊版本改動</li>
 </ul>
 </section>
-<section class="project" aria-labelledby="project-6"><header class="project-heading"><h4 id="project-6">SEO 與結構化資料整合</h4><p class="project-date"><time datetime="2019">2019</time>、<time datetime="2025">2025</time></p></header>
+<section class="project" aria-labelledby="project-6"><header class="project-heading"><h4 id="project-6">行為埋點與轉化追蹤</h4><p class="project-date"><time datetime="2024">2024</time></p></header>
+<p class="project-purpose">支援產品行為分析與廣告轉化追蹤，釐清量測定義並改善前端事件派送與驗證方式。</p>
+<ul>
+<li>思考裝置差異，以內容可見性量測瀏覽深度，實作曝光與分頁追蹤。</li>
+<li>新增一般互動專用的追蹤入口，整合 GA4 事件資料，與轉化事件派送分開。</li>
+<li>校正 ByteDance 配置、事件對應及觸發時機。</li>
+<li>擴充事件 logger，讓測試環境可檢視預計派送的事件與參數。</li>
+</ul>
+</section>
+<section class="project" aria-labelledby="project-7"><header class="project-heading"><h4 id="project-7">SEO 與結構化資料整合</h4><p class="project-date"><time datetime="2019">2019</time>、<time datetime="2025">2025</time></p></header>
 <p class="project-purpose">協助搜尋引擎理解頁面內容，並統一管理多頁面共用的搜尋資訊。</p>
 <ul>
 <li>建置共用 JSON-LD 產生邏輯，集中維護課程與教師搜尋頁的評價、價格等結構化資料，並配合 Nuxt 3 遷移調整 metadata、Open Graph 與結構化資料的初始化及輸出流程</li>
 </ul>
 </section>
-<section class="project" aria-labelledby="project-7"><header class="project-heading"><h4 id="project-7">早期產品建置與營運自動化</h4></header>
+<section class="project" aria-labelledby="project-8"><header class="project-heading"><h4 id="project-8">早期產品建置與營運自動化</h4></header>
 <p class="project-purpose">支援早期核心產品建置，並將例行資料維護與財務操作工具化。</p>
 <ul>
 <li><strong>早期產品建置</strong>　參與 Rails 前後端分離與首版 Nuxt 網站重建，負責教師搜尋、師生預約、聊天室與購物車等核心功能的前端實作</li>

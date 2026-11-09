@@ -9,7 +9,7 @@ Email [tionghian.tang@gmail.com](mailto:tionghian.tang@gmail.com)｜GitHub [Dong
 ## 技術與能力
 
 - **語言、框架與樣式**　JavaScript、TypeScript、HTML／CSS、React、Vue、Nuxt 2／3、Tailwind CSS、UnoCSS、CSS Modules
-- **前端架構與整合**　模組與資料流設計、富文字編輯器設計與整合（Tiptap）、REST API／GraphQL／WebSocket 串接、WebRTC 與影音 SDK 整合
+- **前端架構與整合**　模組與資料流設計、富文字編輯器設計與整合（Tiptap）、REST API／GraphQL／WebSocket 串接、WebRTC 與影音 SDK 整合、行為埋點與轉化追蹤（GA4／ByteDance）
 - **測試與自動化**　單元與元件測試（Jest、Vitest、React Testing Library）、流程自動化（Playwright）
 - **渲染、效能與 SEO**　SSR 策略、hydration 優化、RWD/AWD 開發、Chrome Performance、PageSpeed、裝置快取整合（CloudFront／Edge Cache）、SEO 與網頁結構優化
 - **協作**　Mentorship、設計與程式碼審查、任務拆解與知識交接
@@ -60,6 +60,15 @@ Email [tionghian.tang@gmail.com](mailto:tionghian.tang@gmail.com)｜GitHub [Dong
 - 排查 Nuxt 2／3 初始化時序差異，重整資料流與狀態管理設計，處理跨版本相容性，降低初始化負擔並減少重複資料請求
 - 主責核心功能頁面的 Nuxt 3 遷移、驗證與部署，依 New Relic 錯誤訊號及業務風險分批完成上線，並支援協作者排除跨版本整合問題
 - 協作更新執行環境與相依套件，啟用既有 CI 檢查以同步新舊版本改動
+
+#### 行為埋點與轉化追蹤｜2024
+
+支援產品行為分析與廣告轉化追蹤，釐清量測定義並改善前端事件派送與驗證方式。
+
+- 思考裝置差異，以內容可見性量測瀏覽深度，實作曝光與分頁追蹤。
+- 新增一般互動專用的追蹤入口，整合 GA4 事件資料，與轉化事件派送分開。
+- 校正 ByteDance 配置、事件對應及觸發時機。
+- 擴充事件 logger，讓測試環境可檢視預計派送的事件與參數。
 
 #### SEO 與結構化資料整合｜2019、2025
 

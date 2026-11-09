@@ -27,7 +27,7 @@
     <div class="layout">
       <div class="sidebar"><nav aria-label="On this page"><ul><li><a href="#profile">Profile</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li><li><a href="#education">Education</a></li></ul></nav></div>
       <main id="main" tabindex="-1"><section id="profile" class="resume-section" aria-labelledby="profile-title"><h2 id="profile-title">Profile</h2><p>Frontend engineer with 8+ years of experience building with modern frontend frameworks, including React/TypeScript and Vue/Nuxt. Experienced in component design, data flow, and SSR, with product work spanning search, booking, shopping carts, and real-time features. Delivered performance optimizations, SEO work, system migrations, and phased releases, and supported teammates through design and code reviews.</p></section><section id="skills" class="resume-section" aria-labelledby="skills-title"><h2 id="skills-title">Technical Skills and Collaboration</h2><dl class="skills-grid"><div><dt>Languages, frameworks and styling</dt><dd>JavaScript, TypeScript, HTML/CSS, React, Vue, Nuxt 2/3, Tailwind CSS, UnoCSS, CSS Modules</dd></div>
-<div><dt>Frontend architecture and integration</dt><dd>Module and data flow design, rich-text editor design and integration (Tiptap), REST API/GraphQL/WebSocket integration, WebRTC and video SDK integration</dd></div>
+<div><dt>Frontend architecture and integration</dt><dd>Module and data flow design, rich-text editor design and integration (Tiptap), REST API/GraphQL/WebSocket integration, WebRTC and video SDK integration, behavioral instrumentation and conversion tracking (GA4/ByteDance)</dd></div>
 <div><dt>Testing and automation</dt><dd>Unit and component testing (Jest, Vitest, React Testing Library), workflow automation (Playwright)</dd></div>
 <div><dt>Rendering, performance and SEO</dt><dd>SSR strategies, hydration optimization, RWD/AWD development, Chrome Performance, PageSpeed, device-aware caching integration (CloudFront/Edge Cache), SEO and page structure optimization</dd></div>
 <div><dt>Collaboration</dt><dd>Mentorship, design and code reviews, task breakdown and knowledge transfer</dd></div>
@@ -73,13 +73,22 @@
 <li>Enabled existing CI synchronization checks for parallel development across versions and collaborated on runtime and dependency updates.</li>
 </ul>
 </section>
-<section class="project" aria-labelledby="project-6"><header class="project-heading"><h4 id="project-6">SEO and structured data integration</h4><p class="project-date"><time datetime="2019">2019</time>, <time datetime="2025">2025</time></p></header>
+<section class="project" aria-labelledby="project-6"><header class="project-heading"><h4 id="project-6">Behavioral instrumentation and conversion tracking</h4><p class="project-date"><time datetime="2024">2024</time></p></header>
+<p class="project-purpose">Supported product behavior analysis and advertising conversion tracking by clarifying measurement definitions and improving frontend event dispatch and validation.</p>
+<ul>
+<li>Considered device differences when measuring browsing depth through content visibility, and implemented exposure and pagination tracking.</li>
+<li>Added a dedicated entry point for interaction tracking, integrated GA4 event data, and separated this path from conversion event dispatch.</li>
+<li>Corrected ByteDance configuration, event mappings, and trigger timing.</li>
+<li>Extended event logging so test environments could show the events and parameters intended for dispatch.</li>
+</ul>
+</section>
+<section class="project" aria-labelledby="project-7"><header class="project-heading"><h4 id="project-7">SEO and structured data integration</h4><p class="project-date"><time datetime="2019">2019</time>, <time datetime="2025">2025</time></p></header>
 <p class="project-purpose">Shared search metadata and structured data to help search engines interpret page content.</p>
 <ul>
 <li>Built shared JSON-LD generation to centrally maintain structured data such as ratings and prices for course and teacher search pages. Adapted the initialization and output of metadata, Open Graph tags, and structured data during the Nuxt 3 migration.</li>
 </ul>
 </section>
-<section class="project" aria-labelledby="project-7"><header class="project-heading"><h4 id="project-7">Early product development and operations automation</h4></header>
+<section class="project" aria-labelledby="project-8"><header class="project-heading"><h4 id="project-8">Early product development and operations automation</h4></header>
 <p class="project-purpose">Early product development and tools for recurring data maintenance and finance workflows.</p>
 <ul>
 <li><strong>Early product development</strong>  Helped rebuild the website with a Nuxt frontend separate from Rails, implementing core features including teacher search, student and teacher booking flows, chat, and the shopping cart.</li>

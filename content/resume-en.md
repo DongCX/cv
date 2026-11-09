@@ -9,7 +9,7 @@ Frontend engineer with 8+ years of experience building with modern frontend fram
 ## Technical Skills and Collaboration
 
 - **Languages, frameworks and styling**  JavaScript, TypeScript, HTML/CSS, React, Vue, Nuxt 2/3, Tailwind CSS, UnoCSS, CSS Modules
-- **Frontend architecture and integration**  Module and data flow design, rich-text editor design and integration (Tiptap), REST API/GraphQL/WebSocket integration, WebRTC and video SDK integration
+- **Frontend architecture and integration**  Module and data flow design, rich-text editor design and integration (Tiptap), REST API/GraphQL/WebSocket integration, WebRTC and video SDK integration, behavioral instrumentation and conversion tracking (GA4/ByteDance)
 - **Testing and automation**  Unit and component testing (Jest, Vitest, React Testing Library), workflow automation (Playwright)
 - **Rendering, performance and SEO**  SSR strategies, hydration optimization, RWD/AWD development, Chrome Performance, PageSpeed, device-aware caching integration (CloudFront/Edge Cache), SEO and page structure optimization
 - **Collaboration**  Mentorship, design and code reviews, task breakdown and knowledge transfer
@@ -60,6 +60,15 @@ A framework upgrade involving parallel services, data initialization, feature sy
 - Investigated Nuxt 2/3 initialization differences and improved data flow and state management to address cross-version compatibility, reduce initialization overhead, and avoid redundant data requests.
 - Owned Nuxt 3 migration, validation, and deployment for core feature pages. Completed staged rollouts based on New Relic error signals and business risk, and supported contributors in resolving cross-version integration issues.
 - Enabled existing CI synchronization checks for parallel development across versions and collaborated on runtime and dependency updates.
+
+#### Behavioral instrumentation and conversion tracking | 2024
+
+Supported product behavior analysis and advertising conversion tracking by clarifying measurement definitions and improving frontend event dispatch and validation.
+
+- Considered device differences when measuring browsing depth through content visibility, and implemented exposure and pagination tracking.
+- Added a dedicated entry point for interaction tracking, integrated GA4 event data, and separated this path from conversion event dispatch.
+- Corrected ByteDance configuration, event mappings, and trigger timing.
+- Extended event logging so test environments could show the events and parameters intended for dispatch.
 
 #### SEO and structured data integration | 2019, 2025
 

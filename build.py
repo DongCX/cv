@@ -158,8 +158,8 @@ def render_experience(lines):
         output.append("</section>")
     if job_open:
         output.append("</article>")
-    if project_index != 7:
-        raise ValueError(f"Expected seven approved projects, found {project_index}")
+    if project_index != 8:
+        raise ValueError(f"Expected eight approved projects, found {project_index}")
     return "\n".join(output)
 
 
