@@ -2,6 +2,8 @@
 
 A bilingual CV, published with GitHub Pages.
 
+A small browser-side script measures the navigation height for sticky positioning and anchor spacing.
+
 - [中文](https://dongcx.github.io/cv/)
 - [English](https://dongcx.github.io/cv/en/)
 

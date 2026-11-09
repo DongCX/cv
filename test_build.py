@@ -1,6 +1,6 @@
 import unittest
 
-from build import inline
+from build import build_page, inline
 
 
 class InlineRenderingTests(unittest.TestCase):
@@ -15,6 +15,14 @@ class InlineRenderingTests(unittest.TestCase):
             inline("A < B & **標題**"),
             "A &lt; B &amp; <strong>標題</strong>",
         )
+
+    def test_navigation_script_is_deferred_in_both_languages(self):
+        for language, prefix in [("zh", r"\./"), ("en", r"\.\./")]:
+            with self.subTest(language=language):
+                self.assertRegex(
+                    build_page(language),
+                    rf'<script src="{prefix}assets/navigation\.js\?v=[0-9a-f]{{12}}" defer></script>',
+                )
 
 
 if __name__ == "__main__":

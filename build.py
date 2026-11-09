@@ -174,6 +174,7 @@ def build_page(language):
         name_html = f'<span class="name-local">{html.escape(local_name)}</span> <span class="name-latin" lang="en">{html.escape(latin_name)}</span>'
     prefix = "../" if language == "en" else "./"
     css_version = hashlib.sha256((ROOT / "assets" / "site.css").read_bytes()).hexdigest()[:12]
+    navigation_version = hashlib.sha256((ROOT / "assets" / "navigation.js").read_bytes()).hexdigest()[:12]
     current_url = BASE_URL + ("en/" if language == "en" else "")
     description = sections[0]["lines"][0]
     contact_links = render_contacts(contacts)
@@ -210,6 +211,7 @@ def build_page(language):
   <link rel="alternate" hreflang="x-default" href="{BASE_URL}">
   <link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{prefix}assets/site.css?v={css_version}">
+  <script src="{prefix}assets/navigation.js?v={navigation_version}" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main">{settings["skip"]}</a>
