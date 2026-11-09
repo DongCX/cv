@@ -15,6 +15,12 @@ Build with Python 3.12+ (standard library only):
 python3 build.py
 ```
 
+Run the standard-library builder tests with the following command.
+
+```sh
+python3 -B -m unittest -v
+```
+
 To import the two public resume drafts from the local resume inventory:
 
 ```sh

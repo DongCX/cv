@@ -56,7 +56,8 @@ def render_contacts(contacts):
 
 def inline(text):
     """The sources only use bold spans and plain text within body paragraphs."""
-    return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html.escape(text))
+    markup = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html.escape(text))
+    return markup.replace("</strong>　", "</strong> ")
 
 
 def split_title(text):
@@ -189,7 +190,7 @@ def build_page(language):
         body.append(f'<section id="{anchor}" class="resume-section" aria-labelledby="{anchor}-title"><h2 id="{anchor}-title">{html.escape(section["title"])}</h2>{content}</section>')
     language_links = '<span aria-hidden="true" class="language-divider">/</span>'.join(
         f'<a href="{prefix}{"en/" if lang == "en" else ""}" lang="{LANGUAGES[lang]["lang"]}" hreflang="{LANGUAGES[lang]["lang"]}"{ " aria-current=\"page\"" if lang == language else ""}>{label}</a>'
-        for lang, label in [("zh", "zh-tw"), ("en", "en")]
+        for lang, label in [("zh", "zh-TW"), ("en", "EN")]
     )
     return f'''<!doctype html>
 <html lang="{settings["lang"]}">

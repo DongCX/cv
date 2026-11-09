@@ -4,7 +4,7 @@ Email [tionghian.tang@gmail.com](mailto:tionghian.tang@gmail.com) | GitHub [Dong
 
 ## Profile
 
-Frontend engineer with 8+ years of experience building with modern frontend frameworks, including React/TypeScript and Vue/Nuxt. Experienced in component design, data flow, and SSR, with product work spanning search, booking, shopping carts, and real-time features. Delivered performance optimizations, SEO work, system migrations, and phased releases, and supported teammates through design and code reviews.
+Frontend engineer with 8+ years of experience building with modern frontend frameworks, including React/TypeScript and Vue/Nuxt. Experienced in component design, data flow, and SSR, with product work spanning search, booking, shopping carts, and real-time features. Delivered performance optimizations, SEO work, system migrations, and phased releases. Contributed frontend expertise to product and interaction design with a focus on user experience, and supported teammates through design and code reviews.
 
 ## Technical Skills and Collaboration
 
@@ -51,6 +51,7 @@ A new livestreaming offering within the existing video product, supporting class
 Expanding lesson and booking flows had created tangled logic and increased maintenance overhead.
 
 - Initiated and led the core booking module refactoring, covering technical research, architecture design, and delivery. Reorganized the structure from UI sections into layers based on lesson type, student/teacher role, and state, and provided reference implementations.
+- Advocated treating user attention as a limited resource and drove changes to booking flows that substantially reduced pop-up use.
 - Planned phased delivery and handoffs based on risks to core workflows, and guided teammates through design and code reviews to complete subsequent refactoring.
 
 #### Data flow improvements and Nuxt 3 migration delivery | 2024–2025
