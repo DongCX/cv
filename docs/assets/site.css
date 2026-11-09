@@ -67,7 +67,7 @@ h4 { margin: 0; font-size: 1.125rem; font-weight: 600; letter-spacing: 0; line-h
 strong { font-weight: 650; }
 .job + .job { border-top: 1px solid var(--line); margin-top: 34px; padding-top: 25px; }
 #education p { color: var(--muted); }
-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); margin-top: 52px; padding-top: 20px; color: var(--muted); font-size: .8rem; }
+footer { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 20px; min-height: 12rem; border-top: 1px solid var(--line); margin-top: 64px; padding-top: 24px; color: var(--muted); font-size: .8rem; }
 footer a { text-decoration: none; }
 .skip-link { position: absolute; top: 0; left: 20px; max-width: calc(100% - 40px); transform: translateY(calc(-100% - 2px)); padding: 8px 16px; background: var(--ink); color: white; z-index: 2; }
 .skip-link:focus { top: 12px; transform: none; }
@@ -100,7 +100,7 @@ footer a { text-decoration: none; }
   h2 { margin-bottom: 17px; }
   .project + .project { margin-top: 29px; }
   .project li { line-height: 1.85; }
-  footer { margin-top: 36px; }
+  footer { margin-top: 48px; }
 }
 
 @media (max-height: 480px) {
